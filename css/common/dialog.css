@@ -82,3 +82,34 @@
 .notValidControl {
   border: 2px solid red !important;
 }
+
+
+/* 
+  dialog cancel
+*/
+.cancel-dialog-custom .ui-dialog-titlebar{
+  padding: 24px !important;
+  font-size: 15px;
+  color: #000000;
+}
+
+.dialog-cancel .cancel-content{
+  background-color: #ffffff;
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+.dialog-cancel .cancel-content .content-body .icon-notification{
+  
+}
+
+.dialog-cancel .cancel-content .content-footer{
+  display: flex;
+  width: 100%;
+  height: 60px;
+  background-color: #e9ebee;
+  border-radius: 0 0 5px 5px;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}

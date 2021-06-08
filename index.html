@@ -99,18 +99,19 @@
                 </select>
             </div>
             <!-- sub tool bar in content huy-->
-            <div class="filter-right">
-                <button id="btnMassDelete" class="m-second-button m-btn-delete action-form" Command="MassDelete" data-toggle="tooltip"
+            <div class="filter-right" id="toolBoxEmployee">
+                <button id="btnMassDelete" class="m-second-button tool-box" CommandType="MassDelete" data-toggle="tooltip"
                     data-placement="top" title="Xóa thông tin bản ghi này"><i class="fa fa-minus-circle"></i><span
                         class="btn-text">Xóa</span></button>
-                <button id="btnRefresh" CommandType="Refresh" class="m-second-button m-btn-refresh" data-toggle="tooltip" data-placement="top" title="Làm mới thông tin">
+                <button id="btnRefresh" CommandType="Refresh" class="m-second-button m-btn-refresh tool-box" data-toggle="tooltip" data-placement="top" title="Làm mới thông tin">
                 </button>
-                <button id="btnImport" class="m-second-button m-btn-import" data-toggle="tooltip" data-placement="top" title="Nhập khẩu dữ liệu">
+                <button id="btnImport" class="m-second-button m-btn-import" CommandType="Import" data-toggle="tooltip tool-box" data-placement="top" title="Nhập khẩu dữ liệu">
                 </button>
             </div>
         </div>
         <!-- table content -->
-        <div class="grid grid-employee el-table el-table--fit el-table--scrollable-y el-table--enable-row-hover el-table--enable-row-transition" id="gridEmployee" Url="v1/Employees" ToolBar="toolBarEmployee" ItemId="EmployeeId">
+        <div class="grid grid-employee el-table el-table--fit el-table--scrollable-y el-table--enable-row-hover el-table--enable-row-transition" 
+            id="gridEmployee" Url="v1/Employees" ToolBar="toolBarEmployee" ItemId="EmployeeId" ToolBox = "toolBoxEmployee">
             <div class="hide-item">
                 <div class="col" fieldName="EmployeeCode">Mã nhân viên</div>
                 <div class="col" fieldName="FullName">Họ tên</div>
@@ -278,8 +279,23 @@
             <input id="fileImportInput" type="file" />
         </div>
     </div>
+    <!-- loading icon after get data server -->
     <div class="icon-loader">
         <div class="loader"></div>
+    </div>
+    <!-- dialog calcel -->
+    <div class="dialog-cancel" title="Đóng Form thông tin chung">
+        <div class="cancel-content">
+            <div class="content-body">
+                <div class="icon-notification"></div>
+                <div class="body-info">
+                    Bạn có chắc muốn đóng form nhập <b id="custom-content-info"></b>
+                </div>
+            </div>
+            <div class="content-footer">
+            </div>
+        </div>
+        
     </div>
 
     <!-- thêm thư viện jquery -->

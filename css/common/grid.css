@@ -17,8 +17,10 @@
   custom table
 */
 
-table.table {
+table {
   width: 100%;
+  position: relative;
+
 }
 
 table > tbody > tr > td,
@@ -28,6 +30,13 @@ table > thead > tr > th {
 
 .table thead {
   height: 48px;
+  background-color: #ffffff;
+}
+
+.table thead tr th {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
 }
 
 .custom-input,
@@ -61,6 +70,11 @@ table > thead > tr > th {
 .tablescroll_wrapper,
 .tablescroll {
   height: calc(100% - 25px);
+}
+
+.custom-tbody{
+  overflow: auto;
+
 }
 
 .grid tbody tr:nth-child(2n + 1) {

@@ -47,6 +47,7 @@ resource.CommandType = {
     Edit: "Edit",
     Delete: "Delete",
     Refresh: "Refresh",
+    MassDelete: "MassDelete",
     Import: "Import",
     Export: "Export"
 }

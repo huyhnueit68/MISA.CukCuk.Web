@@ -58,7 +58,18 @@ $(document).ready(function () {
         position: ({ my: "center", at: "center", of: window }),
         modal: true,
     });
-})
+    
+    //set djanlog for show message confirm
+    dialogCancel = $(".dialog-cancel").dialog({
+        autoOpen: false,
+        fluid: true,
+        minWidth: 500,
+        resizable: true,
+        dialogClass: 'cancel-dialog-custom',
+        position: ({ my: "center", at: "center", of: window }),
+        modal: true,
+    });
+});
 
 /**
  * Function chọn datepicker

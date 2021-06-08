@@ -1,6 +1,6 @@
 ﻿/**
  * Config Grid Common
- * PQ Huy 01.06.2021
+ * CreatedBy: PQ Huy 01.06.2021
  */
 class BaseGrid {
 
@@ -25,7 +25,7 @@ class BaseGrid {
 
     /**
      * function init form
-     * PQ Huy 02.06.2021
+     * CreatedBy: PQ Huy 02.06.2021
      * @param {*} formId 
      */
     initFormDetails(formId) {
@@ -37,7 +37,7 @@ class BaseGrid {
 
     /**
      * create event page
-     * PQ Huy 01.06.2021
+     * CreatedBy: PQ Huy 01.06.2021
      */
     initEvent() {
         let me = this;
@@ -45,17 +45,38 @@ class BaseGrid {
         // init event toolbar
         me.initEventToolBar();
 
+        //init action tool box
+        me.intiActionToolBox();
+
         // set background color when on click
         me.eventClickRow(this);
         
     }
 
+
+    /**
+     * function action tool box (refresh, import and export)
+     */
+    intiActionToolBox(){    
+        let me = this,
+            toolBoxId = me.grid.attr("ToolBox"),
+            toolBox = $(`#${toolBoxId}`);
+        
+            if(toolBox.length > 0) {
+                toolBox.find('.tool-box').on('click', function(){
+                    debugger
+                    let commandType = $(this).attr('CommandType');
+                    me.setCommandEvent(commandType);
+                })
+            }
+    }
+
     /**
      * function event tool bar
-     * PQ Huy 02.06.2021
+     * CreatedBy: PQ Huy 02.06.2021
      */
     initEventToolBar() {
-        let me = this,
+        let me = this, 
             toolBarId = me.grid.attr("ToolBar"),
             toolBar = $(`#${toolBarId}`);
     
@@ -78,7 +99,7 @@ class BaseGrid {
 
     /**
      * function set fire event
-     * PQ Huy 07.06.2021
+     * CreatedBy: PQ Huy 07.06.2021
      */
     setCommandEvent(commandType) {
         let me = this,
@@ -97,7 +118,7 @@ class BaseGrid {
 
     /**
      * function set event for fire event
-     * PQ Huy 07.06.2021
+     * CreatedBy: PQ Huy 07.06.2021
      * @param {*} commandType 
      * @returns 
      */
@@ -114,6 +135,9 @@ class BaseGrid {
             case resource.CommandType.Delete: //delete item
                 fireEvent = me.deleteFunction;
                 break;
+            case resource.CommandType.MassDelete: // mass delete item
+            fireEvent = me.massDeleteFunction;
+            break;
             case resource.CommandType.Refresh: //refresh item 
                 fireEvent = me.refresh;
                 break;
@@ -128,8 +152,28 @@ class BaseGrid {
     }
 
     /**
+     * function export data to csv, excel, ...
+     * CreatedBy: PQ Huy 08.06.2021
+     */
+    export(){
+
+    }
+
+    import(){
+
+    }
+
+    /**
+     * function mass delete item
+     * CreatedBy: PQ Huy 08.06.2021
+     */
+    massDeleteFunction(){
+
+    }
+
+    /**
      * get data recoder when selected
-     * PQ Huy 02.06.2021
+     * CreatedBy: CreatedBy: PQ Huy 02.06.2021
      */
     getSelectedRecord() {
         let me = this,
@@ -145,7 +189,7 @@ class BaseGrid {
 
     /**
      * import data in api to function load data show table
-     * PQ Huy 02.06.2021
+     * CreatedBy: PQ Huy 02.06.2021
      */
     getDataServer() {
         let me = this,
@@ -167,7 +211,7 @@ class BaseGrid {
 
     /**
      * change background color when selected row
-     * PQ Huy 01.06.2021
+     * CreatedBy: PQ Huy 01.06.2021
      * @param {*} me 
      */
     eventClickRow(me) {
@@ -180,7 +224,7 @@ class BaseGrid {
 
     /**
      * Function render list from data
-     * PQ HUY 30.5.2021
+     * CreatedBy: PQ Huy 30.5.2021
      */
     loadDataGrid(propertyData) {
         let me = this,
@@ -212,7 +256,7 @@ class BaseGrid {
 
     /**
      * function display header table
-     * PQ Huy 30.5.2021
+     * CreatedBy: PQ Huy 30.5.2021
      * @returns theader html
      */
     renderHeader() {
@@ -244,7 +288,7 @@ class BaseGrid {
 
 
     /**
-     * PQ Huy 30.5.2021
+     * CreatedBy: PQ Huy 30.5.2021
      * @param {dataJson} dataJson 
      * @returns tbody html
      */
@@ -289,7 +333,7 @@ class BaseGrid {
 
     /**
      * function get class need add for display 
-     * PQ Huy 30.5.2021
+     * CreatedBy: PQ Huy 30.5.2021
      * @param {function get class} dataType 
      */
     getClassFormat(dataType) {
@@ -310,7 +354,7 @@ class BaseGrid {
 
     /**
      * function get class need add for display 
-     * PQ Huy 30.5.2021
+     * CreatedBy: PQ Huy 30.5.2021
      * @param {function} dataType 
      * @param {function} column
      */
@@ -335,7 +379,7 @@ class BaseGrid {
 
     /**
      * delete data
-     * PQ Huy 03.06.2021
+     * CreatedBy: PQ Huy 03.06.2021
      */
     deleteFunction() {
         let me = this,
@@ -358,7 +402,7 @@ class BaseGrid {
 
     /**
      * add data
-     * PQ Huy 03.06.2021
+     * CreatedBy: PQ Huy 03.06.2021
      */
     addFunction() {
         let me = this,
@@ -380,7 +424,7 @@ class BaseGrid {
 
     /**
      * edit data 
-     * PQ Huy 03.06.2021
+     * CreatedBy: PQ Huy 03.06.2021
      */
     editFunction() {
     
@@ -404,7 +448,7 @@ class BaseGrid {
 
     /**
      * refresh data
-     * PQ Huy 03.06.2021
+     * CreatedBy: PQ Huy 03.06.2021
      */
     refresh() {
         let me = this;

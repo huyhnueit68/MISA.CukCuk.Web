@@ -37,7 +37,7 @@ class baseForm {
 
         me.form.find(".action-form").on("click", function () {
             let command = $(this).attr("Command");
-            debugger
+            
             switch (command) {
                 case resource.CommandForm.Delete:
                     me.FormMode = enumeration.FormModel.Delete;
@@ -58,19 +58,22 @@ class baseForm {
      * PQ Huy 03.06.2021
      */
     save() {
-
         let me = this,
-            isValid = true;
-        
-        if (me.FormMode == enumeration.FormModel.Delete) {
-            me.setDataSubmit();
-        } else {
-            isValid = me.ValidateForm();
-            if (isValid) {
-                me.setDataSubmit()
-            }
-        }
+        isValid = true;
 
+        switch(me.FormMode){
+            case enumeration.FormModel.Save:
+            case enumeration.FormModel.Edit:
+                dialogCancel.dialog('open');
+                // isValid = me.ValidateForm();
+                // if (isValid) {
+                //     me.setDataSubmit()
+                // }
+                break;
+            case enumeration.FormModel.Delete:
+                me.setDataSubmit();
+                break;
+        }
     }
 
     /**
@@ -95,7 +98,7 @@ class baseForm {
             urlFull = `${constant.UrlPrefix}${url}`;
         
         /** set edit method */
-        if (me.FormMode == enumeration.FormModel.Edit) { debugger
+        if (me.FormMode == enumeration.FormModel.Edit) { 
             url = `${me.Parent.urlEdit}/${data[me.ItemId]}`;
             method = resource.Method.Put,
             urlFull = `${constant.UrlPrefix}${url}`;
@@ -127,8 +130,8 @@ class baseForm {
                     icon: "success",
                     button: "Cancel!",
                 });
-
             }else{
+                //show alert error
                 swal({
                     title: "Thất bại!",
                     text: "Vui lòng thử lại sau!",
