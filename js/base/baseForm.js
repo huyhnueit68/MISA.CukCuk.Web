@@ -114,12 +114,27 @@ class baseForm {
         commonFn.Ajax(urlFull, method, data, function (response) {
             
             if(response){
-                console.log("Cất dữ liệu thành công");
-
-                me.cancel();
+                // save data comlete 
                 me.Parent.getDataServer();
+
+                //cancel form action
+                me.cancel();
+
+                // show sweet alert for user
+                swal({
+                    title: "Thành công!",
+                    text: "",
+                    icon: "success",
+                    button: "Cancel!",
+                });
+
             }else{
-                console.log("Có lỗi khi cất dữ liệu");
+                swal({
+                    title: "Thất bại!",
+                    text: "Vui lòng thử lại sau!",
+                    icon: "error",
+                    button: "Cancel!",
+                });
             }
         })
     }
