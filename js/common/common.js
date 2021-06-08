@@ -146,8 +146,8 @@ $(document).ready(function(){
     });
 
     $('.checkedValue, .custom-header').on('click', function () {
-        alert("huy");
-        debugger
+        // alert("huy");
+        // debugger
         let check = $('tbody').find('td').find('input[type=checkbox]:checked').length;
         if (check > 0) {
             $('#btnMassDelete').show();

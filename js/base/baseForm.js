@@ -64,11 +64,11 @@ class baseForm {
         switch(me.FormMode){
             case enumeration.FormModel.Save:
             case enumeration.FormModel.Edit:
-                dialogCancel.dialog('open');
-                // isValid = me.ValidateForm();
-                // if (isValid) {
-                //     me.setDataSubmit()
-                // }
+                // dialogCancel.dialog('open');
+                isValid = me.ValidateForm();
+                if (isValid) {
+                    me.setDataSubmit()
+                }
                 break;
             case enumeration.FormModel.Delete:
                 me.setDataSubmit();
