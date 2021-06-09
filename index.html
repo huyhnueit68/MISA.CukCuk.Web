@@ -3,18 +3,22 @@
 <head>
     <meta charset="utf-8" />
     <title>MISA CukCuk - Phần mềm quản lý nhà hàng</title>
-    <!-- thư viên jquery -->
+    <!-- thư viên jquery ui và bootstrap-->
     <link href="./lib/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
     <link href="./lib/jquery.tableScroll/jquery.tablescroll.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
     <!-- phần thư viện dùng chung -->
     <link rel="stylesheet" href="./css/common/main.css">
+    <link rel="stylesheet" href="./css/common/navbar.css">
     <link rel="stylesheet" href="./css/common/element.css">
+    <link rel="stylesheet" href="./css/common/grid.css">
     <!-- thư viện riêng cho từng page -->
     <link rel="stylesheet" href="./css/page/employee.css">
 </head>
 <body>
     <!-- nav bar cho menu page -->
-    <div class="navbar">
+    <div class="m-navbar">
         <div class="logo-site">
             <div class="logo-box">
                 <div class="toggle-icon"></div>
@@ -64,15 +68,15 @@
         <div class="account-info">
             <div class="account-avatar"></div>
             <div class="account-name">Phạm Quang Huy</div>
-            <div class="account-option icon-option-default-16"></div>
+            <div class="account-option icon-option-default-16" data-toggle="tooltip" data-placement="bottom" title="Thông tin người dùng"></div>
         </div>
     </div>
     <!-- content chính -->
     <div class="content">
         <div class="header-content">
             <div class="title">Danh sách nhân viên</div>
-            <div class="content-feature">
-                <button id="btnAdd" class="m-btn m-btn-default">
+            <div class="content-feature btn-name" id="toolBarEmployee">
+                <button id="btnAdd" CommandType="Add" class="m-btn m-btn-default" data-toggle="tooltip" data-placement="top" title="Thêm thông tin">
                     <div class="m-btn-icon icon-add"></div>
                     <div class="btn-text">Thêm nhân viên</div>
                 </button>
@@ -95,39 +99,32 @@
                     <option value="">Nhân viên</option>
                 </select>
             </div>
-            <!-- sub tool bar in content -->
-            <div class="filter-right">
-                <button id="btnRefresh" class="m-second-button m-btn-refresh">
+            <!-- sub tool bar in content huy-->
+            <div class="filter-right" id="toolBoxEmployee">
+                <button id="btnMassDelete" class="m-second-button tool-box" CommandType="MassDelete" data-toggle="tooltip"
+                    data-placement="top" title="Xóa thông tin bản ghi này"><i class="fa fa-minus-circle"></i><span
+                        class="btn-text">Xóa</span></button>
+                <button id="btnRefresh" CommandType="Refresh" class="m-second-button m-btn-refresh tool-box" data-toggle="tooltip" data-placement="top" title="Làm mới thông tin">
                 </button>
-                <button id="btnImport" class="m-second-button m-btn-import">
+                <button id="btnImport" class="m-second-button m-btn-import" CommandType="Import" data-toggle="tooltip tool-box" data-placement="top" title="Nhập khẩu dữ liệu">
                 </button>
             </div>
         </div>
         <!-- table content -->
-        <div class="grid grid-employee el-table el-table--fit el-table--scrollable-y el-table--enable-row-hover el-table--enable-row-transition">
-            <table id="tbListData" cellspacing="0" cellpadding="0" border="0" class="el-table__body" style="min-width: 100%;">
-                <thead class="has-gutter">
-                    <tr class="el-table__row">
-                        <th colspan="1" rowspan="1" class="" fieldName="EmployeeCode"><div class="cell">Mã nhân viên</div></th>
-                        <th colspan="1" rowspan="1" class="" fieldName="FullName"><div class="cell">Họ và tên</div></th>
-                        <th colspan="1" rowspan="1" class="" fieldName="PositionName"><div class="cell">Chức vụ</div></th>
-                        <th colspan="1" rowspan="1" class="" fieldName="DateOfBirth" formatType="ddmmyyyy" style="text-align:center"><div class="cell">Ngày sinh</div></th>
-                        <th colspan="1" rowspan="1" class="" fieldName="GenderName"><div class="cell">Giới tính</div></th>
-                        <th colspan="1" rowspan="1" class="" fieldName="NationalityName"><div class="cell">Quốc tịch</div></th>
-                        <th colspan="1" rowspan="1" class="" fieldName="EthnicName"><div class="cell">Dân tộc</div></th>
-                        <th colspan="1" rowspan="1" class="" fieldName="PhoneNumber"><div class="cell">Điện thoại</div></th>
-                        <th colspan="1" rowspan="1" class="" fieldName="Email"><div class="cell">Email</div></th>
-                        <th class="gutter" style="width: 6px;"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="el-table__row">
-                        <td rowspan="1" colspan="1" class=""><div class="cell">2016-05-03</div></td>
-                        <td rowspan="1" colspan="1" class=""><div class="cell">Tom</div></td>
-                        <td rowspan="1" colspan="1" class=""><div class="cell">No. 189, Grove St, Los Angeles</div></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="grid grid-employee el-table el-table--fit el-table--scrollable-y el-table--enable-row-hover el-table--enable-row-transition" 
+            id="gridEmployee" Url="v1/Employees" ToolBar="toolBarEmployee" ItemId="EmployeeId" ToolBox = "toolBoxEmployee">
+            <div class="hide-item">
+                <div class="col" fieldName="EmployeeCode">Mã nhân viên</div>
+                <div class="col" fieldName="FullName">Họ tên</div>
+                <div class="col" fieldName="Gender" DataType="Enum" EnumName="Grender">Giới tính</div>
+                <div class="col" fieldName="DateOfBirth" DataType="Date">Ngày sinh</div>
+                <div class="col" fieldName="PhoneNumber">Số điện thoại</div>
+                <div class="col" fieldName="Email">Email</div>
+                <div class="col" fieldName="PositionId">Chức vụ</div>
+                <div class="col" fieldName="DepartmentId">Phòng ban</div>
+                <div class="col" fieldName="Salary" DataType="Number">Mức lương cơ bản</div>
+                <div class="col" fieldName="WorkStatus" DataType="Enum" EnumName="WorkStatus">Tình trạng công việc</div>
+            </div>
         </div>
         <!-- padding bar show list  -->
         <div class="paging-bar">
@@ -152,8 +149,8 @@
         </div>
     </div>
     <!-- pop up detail -->
-    <div class="m-dialog dialog-detail" title="Thông tin nhân viên">
-        <div class="dialog-content">
+    <div class="m-dialog dialog-detail" title="Thông tin nhân viên" id="modalAction">
+        <div class="dialog-content" ShowForm="true">
             <div class="dialog-body">
                 <div class="m-row m-flex">
                     <div class="m-col el-avatar-employee m-flex-1">
@@ -182,25 +179,32 @@
                         <div class="m-row m-flex">
                             <!-- create date picker -->
                             <div class="m-flex-1">
-                                <m-date-picker id="dtDateOfBirth" label="Ngày sinh" label-cls="m-label" input-cls="m-control" format="dd/mm/yyyy" fieldName="" placeholder="_ _/ _ _/ _ _ _ _" />
+                                <div class="m-label">Ngày sinh</div>
+                                <input type="date" id="DateOfBirth" name="birthday" fieldName="DateOfBirth" DataType="Date">
                             </div>
                             <div class="m-flex-1 mg-left-10px">
-                                <mcombobox id="cbxGender" label="Giới tính" label-cls="" input-cls="" dataIndex="Gender" fieldValue="value" fieldText="text" apiGetUrl=""></mcombobox>
+                                <div class="m-label">Giới tính</div>
+                                <select id="cbxGender" FieldName="Gender" DataType="Enum" EnumName="Gender" >
+                                    <option value="0">Nữ</option>
+                                    <option value="1">Nam</option>
+                                    <option value="2">Khác</option>
+                                </select>
                             </div>
                         </div>
                         <div class="m-row m-flex">
                             <div class="m-flex-1">
                                 <div class="m-label" title="Số chứng minh thư nhân dân hoặc căn cước công dân">Số CMTND/ Căn cước (<span class="label-required">*</span>)</div>
-                                <div class="m-control"><input id="txtIdentityNumber" fieldName="text" type="text" required /></div>
+                                <div class="m-control"><input id="txtIdentityNumber" fieldName="IdentityNumber" type="text" required /></div>
                             </div>
                             <div class="m-flex-1 mg-left-10px">
-                                <m-date-picker id="dtIndentityDate" label="Ngày cấp" label-cls="m-label" input-cls="m-control" format="dd/mm/yyyy" fieldName="" placeholder="_ _/ _ _/ _ _ _ _" />
+                                <div class="m-label">Ngày cấp</div>
+                                <input type="date" id="dateOfIndentity" name="indentityDate" fieldName="IdentityDate" DataType="Date">
                             </div>
                         </div>
                         <div class="m-row m-flex">
                             <div class="m-flex-1">
                                 <div class="m-label">Nơi cấp</div>
-                                <div class="m-control"><input id="txtIdentityPlace" fieldName="PhoneNumber" class="input-required" type="text" /></div>
+                                <div class="m-control"><input id="txtIdentityPlace" fieldName="IdentityPlace" class="input-required" type="text" /></div>
                             </div>
                             <div class="m-flex-1">
                             </div>
@@ -208,15 +212,14 @@
                         <div class="m-row m-flex">
                             <div class="m-col m-flex-1">
                                 <div class="m-label">Email (<span class="label-required">*</span>)</div>
-                                <div class="m-control"><input id="txtEmail" fieldName="Email" type="email" required placeholder="example@domain.com" /></div>
+                                <div class="m-control"><input id="txtEmail" fieldName="Email" DataType="Email" type="email" required placeholder="example@domain.com" /></div>
                             </div>
                             <div class="m-flex-1 mg-left-10px">
                                 <div class="m-label">Số điện thoại (<span class="label-required">*</span>)</div>
                                 <div class="m-control">
-                                    <input id="txtPhoneNumber" fieldName="FullName" class="input-required" type="text" required />
+                                    <input id="txtPhoneNumber" fieldName="PhoneNumber" DataType="PhoneNumber" maxlength="100" class="input-required" type="text" required />
                                 </div>
                             </div>
-
                         </div>
                         <div class="group-label-info" style="margin-top:30px">
                             B. Thông tin công việc:
@@ -225,16 +228,16 @@
                         <div class="m-row m-flex">
                             <div class="m-flex-1">
                                 <div class="m-label">Vị trí</div>
-                                <select id="cbxPosition" fieldName="CustomerGroupName" fieldValue="CustomerGroupId" api="/api/customergroups" class="m-control">
-                                    <option value="19165ed7-212e-21c4-0428-030d4265475f">Giám đốc</option>
-                                    <option value="19165ed7-212e-21c4-0428-030d4265475f">Nhân viên</option>
+                                <select id="cbxPosition" fieldName="PositionCode" fieldValue="CustomerGroupId" api="" class="m-control">
+                                    <option value="0">Giám đốc</option>
+                                    <option value="1">Nhân viên</option>
                                 </select>
                             </div>
                             <div class="m-flex-1 mg-left-10px">
                                 <div class="m-label">Phòng ban</div>
-                                <select id="cbnDepartment" fieldName="CustomerGroupName" fieldValue="CustomerGroupId" api="/api/customergroups" class="m-control">
-                                    <option value="19165ed7-212e-21c4-0428-030d4265475f">Phòng nhân sự</option>
-                                    <option value="19165ed7-212e-21c4-0428-030d4265475f">Phòng đào tạo</option>
+                                <select id="cbnDepartment" fieldName="DepartmentCode" fieldValue="CustomerGroupId" api="" class="m-control">
+                                    <option value="0">Phòng nhân sự</option>
+                                    <option value="1">Phòng đào tạo</option>
                                 </select>
                             </div>
                         </div>
@@ -245,50 +248,96 @@
                             </div>
                             <div class="m-flex-1 mg-left-10px">
                                 <div class="m-label">Mức lương cơ bản</div>
-                                <div class="m-control"><input id="txtSalary" fieldName="Salary" type="text" style="text-align:right; padding-right: 56px" /><span class="currency-for-input">(VNĐ)</span></div>
+                                <div class="m-control"><input id="txtSalary" fieldName="Salary" DataType="Number" type="text" style="text-align:right; padding-right: 56px" /><span class="currency-for-input">(VNĐ)</span></div>
                             </div>
                         </div>
                         <div class="m-row m-flex">
                             <div class="m-flex-1">
-                                <m-date-picker id="dtJoinDate"
-                                               label="Ngày gia nhập"
-                                               label-cls="m-label"
-                                               input-cls="m-control"
-                                               format="dd/mm/yyyy"
-                                               fieldName=""
-                                               placeholder="_ _/ _ _/ _ _ _ _" />
+                                <div class="m-label">Ngày gia nhập</div>
+                                <input type="date" id="dtDateJoin" name="birthdaytime" DataType="Date" fieldName="CreatedDate">
                             </div>
                             <div class="m-flex-1 mg-left-10px">
                                 <div class="m-label">Tình trạng công việc</div>
-                                <select id="cboWorkStatus" fieldName="CustomerGroupName" fieldValue="CustomerGroupId" api="/api/customergroups" class="m-control">
-                                    <option value="19165ed7-212e-21c4-0428-030d4265475f">Đang làm việc</option>
-                                    <option value="19165ed7-212e-21c4-0428-030d4265475f">Đang thử việc</option>
-                                    <option value="19165ed7-212e-21c4-0428-030d4265475f">Nghỉ việc</option>
+                                <select id="cboWorkStatus" fieldName="WorkStatus" fieldValue="CustomerGroupId" api="" class="m-control">
+                                    <option value="1">Đang làm việc</option>
+                                    <option value="0">Đang thử việc</option>
+                                    <option value="2">Nghỉ việc</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
+            <!-- button action form -->
             <div class="dialog-footer">
-                <button id="btnCancel" class="m-btn m-btn-default m-btn-cancel">Hủy</button>
-                <button id="btnSave" class="m-btn m-btn-default"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
+                <button id="btnCancel" class="m-btn m-btn-default m-btn-cancel action-form" Command="Cancel" data-toggle="tooltip" data-placement="top" title="Hủy tiến trình">Hủy</button>
+                <button id="btnDelete" class="m-btn-del m-btn-delete action-form" Command="Delete" data-toggle="tooltip" data-placement="top" title="Xóa thông tin bản ghi này"><i class="fa fa-minus-circle"></i><span
+                        class="btn-text">Xóa</span></button>
+                <button id="btnSave" class="m-btn m-btn-default action-form" Command="Save" data-toggle="tooltip" data-placement="top" title="Lưu lại thông tin"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
             </div>
         </div>
         <div class="field-import" hidden="hidden">
             <input id="fileImportInput" type="file" />
         </div>
     </div>
+    <!-- loading icon after get data server -->
+    <div class="icon-loader">
+        <div class="loader"></div>
+    </div>
+    <!-- dialog calcel -->
+    <div class="dialog-cancel" title="Đóng Form thông tin chung">
+        <div class="cancel-content">
+            <div class="content-body">
+                <div class="icon-notification"></div>
+                <div class="body-info">
+                    Bạn có chắc muốn đóng form nhập thông tin chung hay không?<b id="custom-content-info"></b>
+                </div>
+            </div>
+            <div class="content-footer">
+                <button id="ctn-btn-form" class="" Command="Continue" data-toggle="tooltip" data-placement="top" title="Tiếp tục nhập dữ liệu">Tiếp tục nhập</button>
+                <button id="cancel-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top"
+                    title="Hủy tiến trình">Đóng</button>
+            </div>
+        </div>   
+    </div>
+    <!-- dialog delete -->
+    <div class="dialog-delete" title="Xóa bản ghi">
+        <div class="delete-content">
+            <div class="content-body">
+                <div class="icon-notification"></div>
+                <div class="body-info">
+                    Bạn có chắc muốn xóa thông tin bản gi này?<b id="custom-content-info"></b>
+                </div>
+            </div>
+            <div class="content-footer">
+                <button id="btn-delete-cancel" class="" Command="Continue" data-toggle="tooltip" data-placement="top"
+                    title="Tiếp tục nhập dữ liệu">Hủy</button>
+                <button id="delete-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top"
+                    title="Hủy tiến trình">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- thêm thư viện jquery -->
     <script src="./lib/jquery-3.5.1.min.js"></script>
+    <!-- thêm jquery ui -->
     <script src="./lib/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <!-- jquery plugin -->
     <script src="./lib/plugin/jquery-plugin-custom.js"></script>
-    <script src="index.html"></script>
+    <!-- sweet alert plugin  library -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- các thư viện dùng chung -->
     <script src="./js/common/common.js"></script>
     <script src="./js/common/_control.js"></script>
-    <script src="./js/common/base.js"></script>
+    <script src="./js/base/baseGrid.js"></script>
+    <script src="./js/base/baseForm.js"></script>
+    <script src="./js/common/constant.js"></script>
+    <script src="./js/common/enumeration.js"></script>
+    <script src="./js/common/resource.js"></script>
+    <script src="./js/common/enumeration.js"></script>
+    <!-- thư viện riêng cho page -->
+    <script src="./js/page/employeeDetail.js"></script>
     <script src="./js/page/employee.js"></script>
+    <script src="index.html"></script>
 </body>
 </html>

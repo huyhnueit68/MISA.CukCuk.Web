@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    new CustomerJS();
+    //set action for djanlog detail 
     dialogDetail = $(".m-dialog").dialog({
         autoOpen: false,
         fluid: true,
@@ -10,16 +10,14 @@
         position: ({ my: "center", at: "center", of: window }),
         modal: true,
     });
+
+    //set djanlog for show message confirm
+    dialogCancel = $(".dialog-cancel").dialog({
+        autoOpen: false,
+        fluid: true,
+        minWidth: 500,
+        resizable: true,
+        position: ({ my: "center", at: "center", of: window }),
+        modal: true,
+    });
 })
-
-
-class CustomerJS extends BaseJS {
-    constructor() {
-        super();
-    }
-
-    setApiRouter() {
-        this.apiRouter = "/api/v1/customers";
-    }
-}
-
