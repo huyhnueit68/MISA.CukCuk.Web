@@ -559,8 +559,15 @@ class baseForm {
      */
     cancel() {
         let me = this;
+        dialogCancel.dialog('open');
+        $('#ctn-btn-form').on('click', function () {
+            dialogCancel.dialog('close');
+        })
 
-        dialogDetail.dialog('close');
+        $('#cancel-btn-form').on('click', function () {
+            dialogCancel.dialog('close');
+            dialogDetail.dialog('close');
+        })
     }
 }
 

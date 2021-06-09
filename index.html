@@ -10,6 +10,7 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
     <!-- phần thư viện dùng chung -->
     <link rel="stylesheet" href="./css/common/main.css">
+    <link rel="stylesheet" href="./css/common/navbar.css">
     <link rel="stylesheet" href="./css/common/element.css">
     <link rel="stylesheet" href="./css/common/grid.css">
     <!-- thư viện riêng cho từng page -->
@@ -289,10 +290,13 @@
             <div class="content-body">
                 <div class="icon-notification"></div>
                 <div class="body-info">
-                    Bạn có chắc muốn đóng form nhập <b id="custom-content-info"></b>
+                    Bạn có chắc muốn đóng form nhập thông tin chung hay không?<b id="custom-content-info"></b>
                 </div>
             </div>
             <div class="content-footer">
+                <button id="ctn-btn-form" class="" Command="Continue" data-toggle="tooltip" data-placement="top" title="Tiếp tục nhập dữ liệu">Tiếp tục nhập</button>
+                <button id="cancel-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top"
+                    title="Hủy tiến trình">Đóng</button>
             </div>
         </div>
         

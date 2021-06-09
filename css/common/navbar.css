@@ -52,11 +52,6 @@
   line-height: 44px;
 }
 
-.navbar .navbar-content .nav-item:hover {
-  background-color: #e5e5e5;
-  color: #000000;
-}
-
 .m-navbar .navbar-content .nav-item:focus {
   background-color: #019160;
 }
@@ -64,6 +59,11 @@
 .m-navbar .navbar-content .nav-item:active {
   background-color: #019160;
   color: #ffffff;
+}
+
+.m-navbar .navbar-content .nav-item:hover {
+  background-color: #e5e5e5;
+  color: #000000;
 }
 
 .nav-item .nav-item-icon {
