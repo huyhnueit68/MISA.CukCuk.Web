@@ -40,16 +40,54 @@ class baseForm {
             
             switch (command) {
                 case resource.CommandForm.Delete:
-                    me.FormMode = enumeration.FormModel.Delete;
-                    me.save();
+                    me.accessDelete();
                     break;
                 case resource.CommandForm.Save:
                     me.save();
                     break;
                 case resource.CommandForm.Cancel:
-                    me.cancel();
+                    me.accessCancel();
                     break;
             }
+        })
+    }
+
+
+    /**
+     * function access delete record
+     * PQ Huy 09.06.2021
+     */
+    accessDelete() {
+        let me = this;
+        
+        dialogDelete.dialog('open');
+        $('#btn-delete-cancel').on('click', function () {
+            dialogDelete.dialog('close');
+        })
+
+        $('#delete-btn-form').on('click', function () {
+            dialogDelete.dialog('close');
+            me.FormMode = enumeration.FormModel.Delete;
+            me.save();
+        })
+
+    }
+    
+
+    /**
+     * function access cancel
+     */
+    accessCancel() {
+        let me = this;
+        
+        dialogCancel.dialog('open');
+        $('#ctn-btn-form').on('click', function () {
+            dialogCancel.dialog('close');
+        })
+
+        $('#cancel-btn-form').on('click', function () {
+            dialogCancel.dialog('close');
+            me.cancel();
         })
     }
 
@@ -62,9 +100,8 @@ class baseForm {
         isValid = true;
 
         switch(me.FormMode){
-            case enumeration.FormModel.Save:
+            case enumeration.FormModel.Add:
             case enumeration.FormModel.Edit:
-                // dialogCancel.dialog('open');
                 isValid = me.ValidateForm();
                 if (isValid) {
                     me.setDataSubmit()
@@ -130,6 +167,7 @@ class baseForm {
                     icon: "success",
                     button: "Cancel!",
                 });
+
             }else{
                 //show alert error
                 swal({
@@ -559,15 +597,8 @@ class baseForm {
      */
     cancel() {
         let me = this;
-        dialogCancel.dialog('open');
-        $('#ctn-btn-form').on('click', function () {
-            dialogCancel.dialog('close');
-        })
 
-        $('#cancel-btn-form').on('click', function () {
-            dialogCancel.dialog('close');
-            dialogDetail.dialog('close');
-        })
+        dialogDetail.dialog('close');
     }
 }
 

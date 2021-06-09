@@ -69,6 +69,17 @@ $(document).ready(function () {
         position: ({ my: "center", at: "center", of: window }),
         modal: true,
     });
+
+    //set djanlog for show message confirm delete
+    dialogDelete = $(".dialog-delete").dialog({
+        autoOpen: false,
+        fluid: true,
+        minWidth: 500,
+        resizable: true,
+        dialogClass: 'delete-dialog-custom',
+        position: ({ my: "center", at: "center", of: window }),
+        modal: true,
+    });
 });
 
 /**

@@ -271,7 +271,7 @@
             <!-- button action form -->
             <div class="dialog-footer">
                 <button id="btnCancel" class="m-btn m-btn-default m-btn-cancel action-form" Command="Cancel" data-toggle="tooltip" data-placement="top" title="Hủy tiến trình">Hủy</button>
-                <button id="btnDelete" class="m-btn m-btn-delete action-form" Command="Delete" data-toggle="tooltip" data-placement="top" title="Xóa thông tin bản ghi này"><i class="fa fa-minus-circle"></i><span
+                <button id="btnDelete" class="m-btn-del m-btn-delete action-form" Command="Delete" data-toggle="tooltip" data-placement="top" title="Xóa thông tin bản ghi này"><i class="fa fa-minus-circle"></i><span
                         class="btn-text">Xóa</span></button>
                 <button id="btnSave" class="m-btn m-btn-default action-form" Command="Save" data-toggle="tooltip" data-placement="top" title="Lưu lại thông tin"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
             </div>
@@ -298,8 +298,24 @@
                 <button id="cancel-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top"
                     title="Hủy tiến trình">Đóng</button>
             </div>
+        </div>   
+    </div>
+    <!-- dialog delete -->
+    <div class="dialog-delete" title="Xóa bản ghi">
+        <div class="delete-content">
+            <div class="content-body">
+                <div class="icon-notification"></div>
+                <div class="body-info">
+                    Bạn có chắc muốn xóa thông tin bản gi này?<b id="custom-content-info"></b>
+                </div>
+            </div>
+            <div class="content-footer">
+                <button id="btn-delete-cancel" class="" Command="Continue" data-toggle="tooltip" data-placement="top"
+                    title="Tiếp tục nhập dữ liệu">Hủy</button>
+                <button id="delete-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top"
+                    title="Hủy tiến trình">Xóa</button>
+            </div>
         </div>
-        
     </div>
 
     <!-- thêm thư viện jquery -->
