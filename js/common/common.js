@@ -319,3 +319,30 @@ $(document).ready(function() {
         }
     })
 });
+
+
+$(document).ready(function() {
+    /**
+     * check on click toogle icon
+     */
+
+    $(".toggle-icon").on('click', function() {
+        /**
+         * set hidden icon
+         */
+        if (!$('.m-navbar').hasClass('small-navbar')) {
+            $('.amis-logo, .nav-item-text').addClass("small-menu");
+            $('.m-navbar').addClass('small-navbar')
+            $('.logo-box').addClass('custom-toggle')
+            $('.content').addClass('custom-content')
+            $('.header').addClass('small-header');
+        } else {
+            $('.amis-logo, .nav-item-text').removeClass("small-menu");
+            $('.m-navbar').removeClass('small-navbar')
+            $('.logo-box').removeClass('custom-toggle')
+            $('.content').removeClass('custom-content')
+            $('.header').removeClass('small-header');
+        }
+
+    });
+});
