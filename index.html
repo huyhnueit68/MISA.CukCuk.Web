@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>MISA CukCuk - Phần mềm quản lý nhà hàng</title>
@@ -16,6 +17,7 @@
     <!-- thư viện riêng cho từng page -->
     <link rel="stylesheet" href="./css/page/employee.css">
 </head>
+
 <body>
     <!-- nav bar cho menu page -->
     <div class="m-navbar">
@@ -92,17 +94,40 @@
                     <option value="">Phong đào tạo công nghệ</option>
                     <option value="">Phòng Nhân sự</option>
                 </select>
-                <select id="cbxPosition" fieldName="CustomerGroupName" fieldValue="CustomerGroupId" api="" class="m-control">
+                <!-- <select id="cbxPosition" fieldName="CustomerGroupName" fieldValue="CustomerGroupId" api="" class="m-control">
                     <option value="">Tất cả vị trí</option>
                     <option value="">Giám đốc</option>
                     <option value="">Trưởng phòng</option>
                     <option value="">Nhân viên</option>
-                </select>
+                </select> -->
+                <div class="pn-demo">
+                    <div class="container content-control">
+                        <div class="input-field">
+                            <input type="text" class="m-cbo" id="cbbPosition" placeholder="Chọn/Nhập thông tin">
+                            <div class="h-line"></div>
+                            <div class="arrow" data-arrow="true"><i class="fas fa-angle-down" data-arrow="true"></i></div>
+                            <div class="btn-clear"><i class="far fa-times-circle"></i></div>
+                        </div>
+                        <div class="drop-down">
+                            <div class="dr-item">
+                                <div class="icon"><i class="fas fa-check"></i></div>
+                                <div class="text">Tất cả vị trí</div>
+                            </div>
+                            <div class="dr-item">
+                                <div class="icon"><i class="fas fa-check"></i></div>
+                                <div class="text">Giám đốc</div>
+                            </div>
+                            <div class="dr-item">
+                                <div class="icon"><i class="fas fa-check"></i></div>
+                                <div class="text">Trưởng phòng</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- sub tool bar in content huy-->
+            <!-- sub tool bar in cboDate huy-->
             <div class="filter-right" id="toolBoxEmployee">
-                <button id="btnMassDelete" class="m-second-button tool-box" CommandType="MassDelete" data-toggle="tooltip"
-                    data-placement="top" title="Xóa thông tin bản ghi này"><i class="fa fa-minus-circle"></i><span
+                <button id="btnMassDelete" class="m-second-button tool-box" CommandType="MassDelete" data-toggle="tooltip" data-placement="top" title="Xóa thông tin bản ghi này"><i class="fa fa-minus-circle"></i><span
                         class="btn-text">Xóa</span></button>
                 <button id="btnRefresh" CommandType="Refresh" class="m-second-button m-btn-refresh tool-box" data-toggle="tooltip" data-placement="top" title="Làm mới thông tin">
                 </button>
@@ -111,8 +136,7 @@
             </div>
         </div>
         <!-- table content -->
-        <div class="grid grid-employee el-table el-table--fit el-table--scrollable-y el-table--enable-row-hover el-table--enable-row-transition" 
-            id="gridEmployee" Url="v1/Employees" ToolBar="toolBarEmployee" ItemId="EmployeeId" ToolBox = "toolBoxEmployee">
+        <div class="grid grid-employee el-table el-table--fit el-table--scrollable-y el-table--enable-row-hover el-table--enable-row-transition" id="gridEmployee" Url="v1/Employees" ToolBar="toolBarEmployee" ItemId="EmployeeId" ToolBox="toolBoxEmployee">
             <div class="hide-item">
                 <div class="col" fieldName="EmployeeCode">Mã nhân viên</div>
                 <div class="col" fieldName="FullName">Họ tên</div>
@@ -184,7 +208,7 @@
                             </div>
                             <div class="m-flex-1 mg-left-10px">
                                 <div class="m-label">Giới tính</div>
-                                <select id="cbxGender" FieldName="Gender" DataType="Enum" EnumName="Gender" >
+                                <select id="cbxGender" FieldName="Gender" DataType="Enum" EnumName="Gender">
                                     <option value="0">Nữ</option>
                                     <option value="1">Nam</option>
                                     <option value="2">Khác</option>
@@ -295,10 +319,9 @@
             </div>
             <div class="content-footer">
                 <button id="ctn-btn-form" class="" Command="Continue" data-toggle="tooltip" data-placement="top" title="Tiếp tục nhập dữ liệu">Tiếp tục nhập</button>
-                <button id="cancel-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top"
-                    title="Hủy tiến trình">Đóng</button>
+                <button id="cancel-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top" title="Hủy tiến trình">Đóng</button>
             </div>
-        </div>   
+        </div>
     </div>
     <!-- dialog delete -->
     <div class="dialog-delete" title="Xóa bản ghi">
@@ -310,10 +333,8 @@
                 </div>
             </div>
             <div class="content-footer">
-                <button id="btn-delete-cancel" class="" Command="Continue" data-toggle="tooltip" data-placement="top"
-                    title="Tiếp tục nhập dữ liệu">Hủy</button>
-                <button id="delete-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top"
-                    title="Hủy tiến trình">Xóa</button>
+                <button id="btn-delete-cancel" class="" Command="Continue" data-toggle="tooltip" data-placement="top" title="Tiếp tục nhập dữ liệu">Hủy</button>
+                <button id="delete-btn-form" class="" Command="Cancel" data-toggle="tooltip" data-placement="top" title="Hủy tiến trình">Xóa</button>
             </div>
         </div>
     </div>
@@ -340,4 +361,5 @@
     <script src="./js/page/employee.js"></script>
     <script src="index.html"></script>
 </body>
+
 </html>
