@@ -209,7 +209,8 @@ class baseForm {
                 value = new Date(value);
                 break;
             case resource.DataTypeColumn.Number:
-                value = parseInt(value);
+                
+                value = parseInt((value.replace(/,/g, '')));
                 break;
             case resource.DataTypeColumn.Enum:
                 value = parseInt(value);

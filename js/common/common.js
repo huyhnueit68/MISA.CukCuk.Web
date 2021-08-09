@@ -345,4 +345,15 @@ $(document).ready(function() {
         }
 
     });
+
+    /**
+     * check on click row in table
+     */
+    $('tr.btn-name').off('click').on('click', function () {
+        let tr = $(this);
+
+        // tr.find('input[type=checkbox]').each(function (){})\
+        
+
+    })
 });

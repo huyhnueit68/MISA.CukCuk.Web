@@ -104,3 +104,6 @@ table > thead > tr > th {
 .hidden-delete {
   display: none;
 }
+
+.checked-select {
+}

@@ -242,6 +242,8 @@ class BaseGrid {
 
         //set id after binding data
         me.afterBinding();
+
+
     }
 
     afterBinding(){
@@ -252,6 +254,16 @@ class BaseGrid {
 
         // choose the first row
         // me.grid.find("tbody tr").eq(0).addClass("selected-row");
+
+        $('tr.btn-name').off('click').on('click', function () {
+            let tr = $(this),
+                inputVal  =tr.find('input[type=checkbox]'),
+                checked = inputVal.prop('checked');
+            
+                inputVal.prop('checked', !checked);
+        
+
+        })
     }
 
     /**
